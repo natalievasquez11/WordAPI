@@ -81,8 +81,8 @@ public class WordController {
 // 8-ball answers must be served up at random.
     @RequestMapping(value="/magic/", method=RequestMethod.POST)
     @ResponseStatus(value= HttpStatus.CREATED)
-    public Magic8Ball addQuestion(@RequestBody Magic8Ball magic8Ball) {
+    public String addQuestion(@RequestBody Magic8Ball magic8Ball) {
         Magic8Ball random8ball = this.magic8Balls.get(rand.nextInt(this.magic8Balls.size()));
-        return random8ball;
+        return random8ball.getAnswer();
     }
 }
