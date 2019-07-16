@@ -1,49 +1,48 @@
 package com.company.WordAPIcontroller;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Random;
 
-
-
-// Quotes must be served up at random.
-// Words and definitions must be served up at random.
-// Your service must contain at least 6 different magic 8-ball responses.
-// 8-ball answers must be served up at random.
 
 @RestController
 public class WordController {
+    Random rand = new Random();
+    private List<Quote> quotes = new ArrayList<>();
+    private List<Word> words = new ArrayList<>();
+    private List<Magic8Ball> magic8Balls = new ArrayList<>();
+
 
     public WordController() {
-        List<Quote> quotes = new ArrayList<>();
-        List<Word> words = new ArrayList<>();
-
         //add quotes
-        quotes.add(new Quote("Pooh Bear", "People say nothing is impossible, but I do nothing every day."));
-        quotes.add(new Quote("Pooh Bear", "I think we dream so we don’t have to be apart for so long. If we’re in each other’s dreams, we can be together all the time."));
-        quotes.add(new Quote("Andy Rooney", "The average dog is a nicer person than the average person."));
-        quotes.add(new Quote("Alexander Woollcott", "All the things I really like to do are either immoral, illegal or fattening."));
-        quotes.add(new Quote("Arthur C. Clarke", "I don’t believe in astrology; I’m a Sagittarius and we’re skeptical."));
-        quotes.add(new Quote("Bryan White", "We never really grow up, we only learn how to act in public."));
-        quotes.add(new Quote("Doug Larson", "To err is human; to admit it, superhuman."));
-        quotes.add(new Quote("Douglas Adams", "I refuse to answer that question on the grounds that I don’t know the answer."));
-        quotes.add(new Quote("Elbert Hubbard", "Do not take life too seriously. You will never get out of it alive."));
-        quotes.add(new Quote("George Burns", "Happiness is having a large, loving, caring, close-knit family in another city."));
+        this.quotes.add(new Quote("Pooh Bear", "People say nothing is impossible, but I do nothing every day."));
+        this.quotes.add(new Quote("Pooh Bear", "I think we dream so we don’t have to be apart for so long. If we’re in each other’s dreams, we can be together all the time."));
+        this.quotes.add(new Quote("Andy Rooney", "The average dog is a nicer person than the average person."));
+        this.quotes.add(new Quote("Alexander Woollcott", "All the things I really like to do are either immoral, illegal or fattening."));
+        this.quotes.add(new Quote("Arthur C. Clarke", "I don’t believe in astrology; I’m a Sagittarius and we’re skeptical."));
+        this.quotes.add(new Quote("Bryan White", "We never really grow up, we only learn how to act in public."));
+        this.quotes.add(new Quote("Doug Larson", "To err is human; to admit it, superhuman."));
+        this.quotes.add(new Quote("Douglas Adams", "I refuse to answer that question on the grounds that I don’t know the answer."));
+        this.quotes.add(new Quote("Elbert Hubbard", "Do not take life too seriously. You will never get out of it alive."));
+        this.quotes.add(new Quote("George Burns", "Happiness is having a large, loving, caring, close-knit family in another city."));
 
         //add words
-        words.add(new Word("Cupboard","A closet with shelves for dishes, cups, etc."));
-        words.add(new Word("Utopia", "An ideal place or state."));
-        words.add(new Word("Inglenook", "A cozy nook by the hearth."));
-        words.add(new Word("Ratatouille", "A spicy French stew."));
-        words.add(new Word("Serendipity", "Finding something nice while looking for something else."));
-        words.add(new Word("Comely", "Attractive"));
-        words.add(new Word("Efflorescence", "Flowering, blooming."));
-        words.add(new Word("Imbue", "To infuse, instill."));
-        words.add(new Word("Petrichor", "The smell of earth after rain."));
-        words.add(new Word("Sumptuous", "Lush, luxurious."));
+        this.words.add(new Word("Cupboard","A closet with shelves for dishes, cups, etc."));
+        this.words.add(new Word("Utopia", "An ideal place or state."));
+        this.words.add(new Word("Inglenook", "A cozy nook by the hearth."));
+        this.words.add(new Word("Ratatouille", "A spicy French stew."));
+        this.words.add(new Word("Serendipity", "Finding something nice while looking for something else."));
+        this.words.add(new Word("Comely", "Attractive"));
+        this.words.add(new Word("Efflorescence", "Flowering, blooming."));
+        this.words.add(new Word("Imbue", "To infuse, instill."));
+        this.words.add(new Word("Petrichor", "The smell of earth after rain."));
+        this.words.add(new Word("Sumptuous", "Lush, luxurious."));
     }
 
 
@@ -51,16 +50,28 @@ public class WordController {
 // Quote Object:
 // Author, Quote
 
-//    @RequestMapping(value="/quote", method= RequestMethod.GET)
-//    public void getQuote() {
-//
-//    }
+    @RequestMapping(value="/quote", method= RequestMethod.GET)
+    public Quote getQuote() {
+        Quote randomQuote = this.quotes.get(rand.nextInt(this.quotes.size()));
+        return randomQuote;
+    }
 //
 // URI: /word, Method: GET, Request Body: None, Response Body: Definition
 //Definition Object: Word, Definition
 
+    @RequestMapping(value="/word", method=RequestMethod.GET)
+    public Word getWord() {
+        Word randomWord = this.words.get(rand.nextInt(this.words.size()));
+        return randomWord;
+    }
+
 // URI: /magic, Method: POST, Request Body: Question, Response Body: Answer
 // Answer Object: Question, Answer
+    // Your service must contain at least 6 different magic 8-ball responses.
+// 8-ball answers must be served up at random.
+//    @RequestMapping(value="/magic", method=RequestMethod.POST)
+//    @ResponseStatus(value= HttpStatus.CREATED)
+//    public
 
 
 
