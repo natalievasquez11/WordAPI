@@ -8,6 +8,13 @@ public class Quote {
     @NotEmpty
     private String quote;
 
+    public Quote() {}
+
+    public Quote(String author, String quote) {
+        this.author = author;
+        this.quote = quote;
+    }
+
     public String getAuthor() {
         return author;
     }

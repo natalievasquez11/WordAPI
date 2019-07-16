@@ -8,6 +8,13 @@ public class Magic8Ball {
     @NotEmpty
     private String answer;
 
+    public Magic8Ball() {}
+
+    public Magic8Ball(String question, String answer) {
+        this.question = question;
+        this.answer = answer;
+    }
+
     public String getQuestion() {
         return question;
     }

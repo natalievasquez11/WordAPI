@@ -8,6 +8,13 @@ public class Word {
     @NotEmpty
     private String definition;
 
+    public Word() {}
+
+    public Word(String word, String definition) {
+        this.word = word;
+        this.definition = definition;
+    }
+
     public String getWord() {
         return word;
     }
