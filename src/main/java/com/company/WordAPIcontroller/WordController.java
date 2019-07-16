@@ -55,30 +55,18 @@ public class WordController {
 
     }
 
-
-    // URI: /quote, Method: GET, Request Body: None, Response Body: Quote,
-// Quote Object:
-// Author, Quote
-
     @RequestMapping(value="/quote", method= RequestMethod.GET)
     public Quote getQuote() {
         Quote randomQuote = this.quotes.get(rand.nextInt(this.quotes.size()));
         return randomQuote;
     }
-//
-// URI: /word, Method: GET, Request Body: None, Response Body: Definition
-//Definition Object: Word, Definition
 
     @RequestMapping(value="/word", method=RequestMethod.GET)
     public Word getWord() {
         Word randomWord = this.words.get(rand.nextInt(this.words.size()));
         return randomWord;
     }
-
-// URI: /magic, Method: POST, Request Body: Question, Response Body: Answer
-// Answer Object: Question, Answer
-    // Your service must contain at least 6 different magic 8-ball responses.
-// 8-ball answers must be served up at random.
+    
     @RequestMapping(value="/magic/", method=RequestMethod.POST)
     @ResponseStatus(value= HttpStatus.CREATED)
     public String addQuestion(@RequestBody Magic8Ball magic8Ball) {
