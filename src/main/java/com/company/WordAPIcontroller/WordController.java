@@ -1,10 +1,7 @@
 package com.company.WordAPIcontroller;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -43,6 +40,19 @@ public class WordController {
         this.words.add(new Word("Imbue", "To infuse, instill."));
         this.words.add(new Word("Petrichor", "The smell of earth after rain."));
         this.words.add(new Word("Sumptuous", "Lush, luxurious."));
+
+        //add 8ball answers
+        this.magic8Balls.add(new Magic8Ball(null, "As I see it, yes."));
+        this.magic8Balls.add(new Magic8Ball(null, "Reply hazy, try again."));
+        this.magic8Balls.add(new Magic8Ball(null, "Don't count on it."));
+        this.magic8Balls.add(new Magic8Ball(null, "Outlook good."));
+        this.magic8Balls.add(new Magic8Ball(null, "Better not tell you now."));
+        this.magic8Balls.add(new Magic8Ball(null, "Very doubtful."));
+        this.magic8Balls.add(new Magic8Ball(null, "You may rely on it."));
+        this.magic8Balls.add(new Magic8Ball(null, "Signs point to yes."));
+        this.magic8Balls.add(new Magic8Ball(null, "Cannot predict now."));
+        this.magic8Balls.add(new Magic8Ball(null, "My sources say no."));
+
     }
 
 
@@ -69,11 +79,10 @@ public class WordController {
 // Answer Object: Question, Answer
     // Your service must contain at least 6 different magic 8-ball responses.
 // 8-ball answers must be served up at random.
-//    @RequestMapping(value="/magic", method=RequestMethod.POST)
-//    @ResponseStatus(value= HttpStatus.CREATED)
-//    public
-
-
-
-
+    @RequestMapping(value="/magic/", method=RequestMethod.POST)
+    @ResponseStatus(value= HttpStatus.CREATED)
+    public Magic8Ball addQuestion(@RequestBody Magic8Ball magic8Ball) {
+        Magic8Ball random8ball = this.magic8Balls.get(rand.nextInt(this.magic8Balls.size()));
+        return random8ball;
+    }
 }
