@@ -66,7 +66,7 @@ public class WordController {
         Word randomWord = this.words.get(rand.nextInt(this.words.size()));
         return randomWord;
     }
-    
+
     @RequestMapping(value="/magic/", method=RequestMethod.POST)
     @ResponseStatus(value= HttpStatus.CREATED)
     public String addQuestion(@RequestBody Magic8Ball magic8Ball) {
